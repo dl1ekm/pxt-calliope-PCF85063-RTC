@@ -126,8 +126,7 @@ namespace PCF85063 {
      */
     function getClock() {
 
-        // perform RESTART to have clear address position also after power down
-        pins.i2cWriteNumber(PCF85063TP_ADDR, CTRL_STOP, NumberFormat.UInt16BE) // control 1 stop
+        // perform START to have clear address position also after power down
         pins.i2cWriteNumber(PCF85063TP_ADDR, CTRL_START, NumberFormat.UInt16BE) // control 1 start
         
         // dummy reads
