@@ -1,0 +1,16 @@
+{
+    "name": "pxt-calliope-PCF85063-RTC",
+    "version": "0.0.1",
+    "description": "Control PCF85063 RTC chips",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "PCF85063.ts"
+    ],
+    "testFiles": [
+    ],
+    "public": false,
+    "preferredEditor": "tsprj"
+}
