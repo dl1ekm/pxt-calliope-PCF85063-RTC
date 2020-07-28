@@ -132,9 +132,14 @@ namespace PCF85063 {
         // dummy reads
         rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
         rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
+
         
         rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE) % 256
         seconds = BCDtoDEC(rtcModule)
+        // Test, if there is a bit left in the other bytes confusing the translation
+        if (seconds >= 80) {
+            seconds = seconds - 80
+        }
         rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE) % 256
         minutes = BCDtoDEC(rtcModule)
         rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE) % 256
