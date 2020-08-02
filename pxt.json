@@ -12,6 +12,6 @@
         "_locales/de/PCF85063-RTC-jsdocs-strings.json"
     ],
     "testFiles": [],
-    "public": true,
+    "public": false,
     "preferredEditor": "tsprj"
 }
