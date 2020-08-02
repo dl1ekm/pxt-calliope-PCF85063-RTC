@@ -12,6 +12,10 @@
         "_locales/de/PCF85063-RTC-jsdocs-strings.json"
     ],
     "testFiles": [],
-    "public": false,
+    "public": true,
+    "supportedTargets": [
+        "microbit",
+        "calliope"
+    ],
     "preferredEditor": "tsprj"
 }
