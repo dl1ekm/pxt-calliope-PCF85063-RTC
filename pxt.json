@@ -8,6 +8,8 @@
     "files": [
         "README.md",
         "PCF85063.ts",
+        "_locales/de/PCF85063-RTC-strings.json",
+        "_locales/de/PCF85063-RTC-jsdocs-strings.json"
     ],
     "testFiles": [],
     "public": true,
