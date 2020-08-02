@@ -1,5 +1,6 @@
 
 
+/**
  /**
  * RealTimeClock extension with PCF85063A/TP for calliope.
  * I2C interface.
@@ -15,13 +16,9 @@
  * 
  */
 
-
-/**
- * Part of the date or time
- */
 enum DateTime_Format {
     //% block="DD"
-    DateTime_Day,
+    DateTime_Date,
     //% block="MM"
     DateTime_Month,
     //% block="YYYY"
@@ -34,9 +31,6 @@ enum DateTime_Format {
     DateTime_Sec
 }
 
-/**
- * Type of RTC chip
- */
 enum Chip_Type {
     //% block="Grove"
     Grove,
@@ -44,9 +38,6 @@ enum Chip_Type {
     PCF85063A
 }
 
-/**
- * Clock time
- */
 enum CLK_Type {
     //% block="32768 Hz"
     CLK_32768,
@@ -62,24 +53,21 @@ enum CLK_Type {
     CLK_1024,
     //% block="1 Hz"
     CLK_1,
-    //% block="Off"
+    //% block="Aus"
     CLK_Off
 }
 
-/**
- * Interupt settings
- */
 enum INT_Type {
     //% block="60 sec"
     INT_60,
     //% block="30 sec"
     INT_30,
-    //% block="Off"
+    //% block="Aus"
     INT_Off
 }
 
 /**
-* Control of realtime clock (RTC) ICs PCF85063TP (Grove Precision RTC) and PCF85063A (dl1ekm)
+* Steuerung der Uhrenbauteine PCF85063TP (Grove Precision RTC) und PCF85063A (Selbstbau)
 */
 //% weight=10 color=#2874a6  icon="\uf017"
 //% groups=['Basic', 'Advanced', 'others']
@@ -112,10 +100,10 @@ namespace PCF85063 {
     let new_reg = 0b00000000;
 
 
-    // Convert DEC to BCD
+    // Umwandlung DEC zu BCD
     function DECtoBCD(n: number): number {
         //return (n / 10 * 16) + (n % 10);
-        let s = n.toString();
+    let s = n.toString();
         let m = 0;
         let bcd = 0;
         let shiftcount = 0;
@@ -127,14 +115,14 @@ namespace PCF85063 {
         return bcd;
     }
 
-    // Convert BCD zu DEC
+    // Umwandlung BCD zu DEC
     function BCDtoDEC(n: number): number {
         //return (n / 16 * 10) + (n % 16);
-        return (n & 15) + (((n & 240) >> 4) * 10) + (((n & 3840) >> 8) * 100) + (((n & 61440) >> 12) * 1000);
+    return (n & 15) + (((n & 240) >> 4) * 10) + (((n & 3840) >> 8) * 100) + (((n & 61440) >> 12) * 1000);
     }
 
     /**
-     * Read RTC date and time
+     * Auslesen des Uhren-Chips
      */
     function getClock() {
 
@@ -179,25 +167,25 @@ namespace PCF85063 {
                   
         switch (weekday) {
             case 0:
-                weekday_str = "Sunday";
+                weekday_str = "Sonntag";
                 break;
             case 1:
-                weekday_str = "Monday";
+                weekday_str = "Montag";
                 break;
             case 2:
-                weekday_str = "Tuesday";
+                weekday_str = "Dienstag";
                 break;
             case 3:
-                weekday_str = "Wednesday";
+                weekday_str = "Mittwoch";
                 break;
             case 4:
-                weekday_str = "Thursday";
+                weekday_str = "Donnerstag";
                 break;
             case 5:
-                weekday_str = "Friday";
+                weekday_str = "Freitag";
                 break;
             case 6:
-                weekday_str = "Saturday";
+                weekday_str = "Samstag";
                 break;
         }
         year = 2000 + year;
@@ -213,7 +201,7 @@ namespace PCF85063 {
              rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
         }
 
-        // For PCF85063A 7 more ready for unused alarm registers
+                // For PCF85063A 7 more ready for unused alarm registers
         if (rtc_Type === Chip_Type.PCF85063A) {
              for (let i = 1; i <= 7; i++) {
                 rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
@@ -228,9 +216,6 @@ namespace PCF85063 {
         ctrl_reg1 = rtcModule
     }
 
-    /**
-     * Add leading zero
-     */
     function leadingZero(s: string, len: number) {
         for (let i = 1; i <= (len - s.length); i++) {
             s = '0' + s;
@@ -239,18 +224,18 @@ namespace PCF85063 {
     }
 
     /**
-     * Set type of RTC chip
+     * Setze den Typ des Uhren-Chips
      */
-    //% blockId="setType" block="Set RTC type %modul"
+    //% blockId="setType" block="Setze Uhren-Typ %modul"
     //% group="Advanced"
     export function setType(modul: Chip_Type) {
         rtc_Type = modul;
     }
 
     /**
-     * Set interrupt
+     * Setze den Interrupt
      */
-    //% blockId="setInterrupt" block="Set interrupt %interrupt"
+    //% blockId="setInterrupt" block="Setze Interrupt %interrupt"
     //% group="Advanced"
     export function setInterrupt(interrupt: INT_Type) {
         getControlRegisters();
@@ -284,9 +269,9 @@ namespace PCF85063 {
 
 
     /**
-     * Set clock outout
+     * Setze den Clock-Ausgange
      */
-    //% blockId="setClk" block="Set clock output %clk"
+    //% blockId="setClk" block="Setze Clock-Ausgang %clk"
     //% group="Advanced"
     export function setClk(clk: CLK_Type) {
         getControlRegisters();
@@ -332,9 +317,9 @@ namespace PCF85063 {
     }
 
     /**
-    * Read time
+    * Lese die Uhrzeit
     */
-    //% blockId="getTime" block="Read time"
+    //% blockId="getTime" block="Lese Uhrzeit"
     //% group="Basic"
     export function getTime(): string {
         getClock();
@@ -345,9 +330,9 @@ namespace PCF85063 {
     }
 
     /**
-    * Read date
+    * Lese das Datum
     */
-    //% blockId="getDate" block="Read date"
+    //% blockId="getDate" block="Lese Datum"
     //% group="Basic"
     export function getDate(): string {
         getClock();
@@ -357,16 +342,13 @@ namespace PCF85063 {
         return timestr;
     }
 
-    /**
-    * Read part of date or time
-    */
-    //% blockId="getDateTimePart" block="Read part from date/time  part %part"
+    //% blockId="getDateTimePart" block="Lese Teil von DatumZeit Anteil %part"
     //% group="Basic"
     export function getDateTimePart(part: DateTime_Format): string {
         getClock();
         let timestr = '';
         switch (part) {
-            case DateTime_Format.DateTime_Day:
+            case DateTime_Format.DateTime_Date:
                 timestr = leadingZero(day.toString(), 2);
                 break;
             case DateTime_Format.DateTime_Month:
@@ -388,7 +370,7 @@ namespace PCF85063 {
         return timestr;
     }
 
-    //% blockId="setClock" block="Set date and time year %year | month %month | weekday %weekday | day %day | hours %hours | minutes %minutes | seconds %seconds"
+    //% blockId="setClock" block="Setze Datum und Uhrzeit Jahr %year | Monat %month | Wochentag %weekday | Tag %day | Stunden %hours | Minuten %minutes | Sekunden %seconds"
     //% year.min=2000 year.max= 2099 month.min=1 month.max=12 weekday.min=0 weekday.max=6
     //% day.min=1 day.max=31 hours.min=1 hours.max=23 minutes.min=1 minutes.max=59 seconds.min=1 seconds.max=59
     //% group="Basic"
