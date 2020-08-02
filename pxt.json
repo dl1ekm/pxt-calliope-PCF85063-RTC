@@ -7,10 +7,11 @@
     },
     "files": [
         "README.md",
-        "PCF85063.ts"
+        "PCF85063.ts",
+        "_locales/de/PCF85063-RTC-strings.json",
+        "_locales/de/PCF85063-RTC-jsdocs-strings.json"
     ],
-    "testFiles": [
-    ],
+    "testFiles": [],
     "public": false,
     "preferredEditor": "tsprj"
 }

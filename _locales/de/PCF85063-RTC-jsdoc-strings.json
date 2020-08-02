@@ -1,0 +1,13 @@
+{
+  "CLK_Type": "Clock Zeit",
+  "Chip_Type": "Type des RTC chip",
+  "DateTime_Format": "/**\nRealTimeClock Erweiertung mit PCF85063A/TP für calliope.\nI2C interface.\n* Thanks to Ingo Hoffmann for the great idea.\nwww.hackster.io/supereugen/genaue-echtzeituhr-abfragen-2ad9ef\nOrignal development by Raik Andritschke (CalliTGS3)\n* SPEC: www.nxp.com/docs/en/data-sheet/PCF85063TP.pdf\nSPEC: www.nxp.com/docs/en/data-sheet/PCF85063A.pdf\n* @author Marcel André\n\nPart of the date or time",
+  "INT_Type": "Interupt Einstellungen",
+  "PCF85063": "Steuerung der Uhrenbausteine (RTC) PCF85063TP (Grove Precision RTC) und PCF85063A (dl1ekm)",
+  "PCF85063.getDate": "Lese Datum",
+  "PCF85063.getDateTimePart": "Lese Teil von Datum oder Uhrzeit",
+  "PCF85063.getTime": "Lese Zeit",
+  "PCF85063.setClk": "Setze Clock Ausgang",
+  "PCF85063.setInterrupt": "Setze Interrupt",
+  "PCF85063.setType": "Setze Typ des RTC Chip"
+}
