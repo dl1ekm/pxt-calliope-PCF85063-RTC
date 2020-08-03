@@ -1,4 +1,4 @@
-# pxt-calliope-grovep-RTC-PCF85063
+# pxt-calliope-PCF85063-RTC
 
 
 
@@ -17,4 +17,5 @@ Read more at https://makecode.microbit.org/extensions
 ## Supported targets
 
 * for PXT/microbit
+* for PXT/calliope
 (The metadata above is needed for package search.)

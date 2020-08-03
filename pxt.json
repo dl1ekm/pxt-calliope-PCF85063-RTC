@@ -12,7 +12,8 @@
     "testFiles": [],
     "public": true,
     "supportedTargets": [
-        "microbit"
+        "microbit",
+        "calliope"
     ],
     "preferredEditor": "tsprj"
 }
